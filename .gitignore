@@ -1,0 +1,15 @@
+echo "
+# Binaries
+*.exe
+*.dll
+*.so
+*.o
+*.out
+# Logs
+*.log
+# Cache
+/tmp/
+# System files
+.DS_Store
+" > .gitignore
+
