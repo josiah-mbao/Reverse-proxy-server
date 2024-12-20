@@ -28,8 +28,9 @@ Clone the repository to your local machine:
 ```bash
 git clone https://github.com/josiah-mbao/go-proxy-server.git
 cd go-proxy-server
-Install Dependencies
 ```
+
+## Install Dependencies
 
 Run the following command to fetch dependencies:
 
