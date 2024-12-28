@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func main() {
+func server() {
 	// Serves dynamic content
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "The server that served you this page was built by Josiah, using Go.")
