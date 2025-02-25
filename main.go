@@ -17,7 +17,7 @@ func reverseProxy(target string) http.Handler {
 }
 
 func main() {
-	backend := "https://jsonplaceholder.typicode.com"
+	backend := "http://127.0.0.1:5000" // Plate planner backend
 	http.Handle("/", reverseProxy(backend))
 	fmt.Println("Aight, starting server on :8080")
 	err := http.ListenAndServe(":8080", nil)
