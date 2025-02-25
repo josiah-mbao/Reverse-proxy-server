@@ -15,8 +15,11 @@ func server() {
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/static", http.StripPrefix("/static", fs))
 
-
 	// Start the server
 	fmt.Println("Server running on http://localhost:8080")
 	http.ListenAndServe(":8080", nil)
+}
+
+func main() {
+	server()
 }
