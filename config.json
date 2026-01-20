@@ -1,0 +1,10 @@
+{
+  "port": 8080,
+  "backend": "http://127.0.0.1:5000",
+  "log_level": "info",
+  "cache_enabled": true,
+  "cache_size": 50,
+  "cache_ttl_seconds": 60,
+  "request_timeout_seconds": 30,
+  "shutdown_timeout_seconds": 30
+}

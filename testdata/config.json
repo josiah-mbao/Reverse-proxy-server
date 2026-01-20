@@ -1,0 +1,5 @@
+{
+  "port": 9090,
+  "backend": "http://test-backend.com",
+  "log_level": "debug"
+}
