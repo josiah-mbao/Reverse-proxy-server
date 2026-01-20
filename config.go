@@ -18,19 +18,25 @@ type Config struct {
 	CacheTTL        int    `json:"cache_ttl_seconds"`
 	RequestTimeout  int    `json:"request_timeout_seconds"`
 	ShutdownTimeout int    `json:"shutdown_timeout_seconds"`
+	RateLimitEnabled bool   `json:"rate_limit_enabled"`
+	RateLimitRPM    int    `json:"rate_limit_requests_per_minute"`
+	RateLimitBurst  int    `json:"rate_limit_burst_size"`
 }
 
 // LoadConfig loads configuration from environment variables, config file, and command-line flags
 func LoadConfig() (*Config, error) {
 	config := &Config{
-		Port:            8080,
-		Backend:         "http://127.0.0.1:5000",
-		LogLevel:        "info",
-		CacheEnabled:    false,
-		CacheSize:       100,
-		CacheTTL:        300, // 5 minutes
-		RequestTimeout:  30,  // 30 seconds
-		ShutdownTimeout: 30,  // 30 seconds
+		Port:             8080,
+		Backend:          "http://127.0.0.1:5000",
+		LogLevel:         "info",
+		CacheEnabled:     false,
+		CacheSize:        100,
+		CacheTTL:         300, // 5 minutes
+		RequestTimeout:   30,  // 30 seconds
+		ShutdownTimeout:  30,  // 30 seconds
+		RateLimitEnabled: false,
+		RateLimitRPM:     100, // 100 requests per minute
+		RateLimitBurst:   20,  // burst size
 	}
 
 	// Load from environment variables and config file

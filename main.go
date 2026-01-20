@@ -66,11 +66,21 @@ func main() {
 		fmt.Printf("Cache enabled: size=%d, ttl=%ds\n", config.CacheSize, config.CacheTTL)
 	}
 
+	// Create rate limiter if enabled
+	var rateLimiter *RateLimiter
+	if config.RateLimitEnabled {
+		rateLimiter = NewRateLimiter(config.RateLimitRPM, config.RateLimitBurst)
+		fmt.Printf("Rate limiting enabled: %d RPM, burst=%d\n", config.RateLimitRPM, config.RateLimitBurst)
+	}
+
 	// Build middleware chain
 	handler := reverseProxy(config.Backend)
 	handler = loggingMiddleware(handler)
 	if cache != nil {
 		handler = cachingMiddleware(cache, handler)
+	}
+	if rateLimiter != nil {
+		handler = rateLimitMiddleware(rateLimiter, handler)
 	}
 
 	// Add error handling and timeout middleware
