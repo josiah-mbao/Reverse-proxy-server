@@ -158,6 +158,27 @@ The proxy supports optional response caching to reduce backend load:
 - Thread-safe for concurrent access
 - Responses include `X-Cache: HIT/MISS/BYPASS` headers
 
+### Rate Limiting Configuration
+
+The proxy includes configurable rate limiting to prevent abuse and ensure fair resource distribution:
+
+- **rate_limit_enabled**: Enable/disable rate limiting (default: false)
+- **rate_limit_requests_per_minute**: Maximum requests per minute per client (default: 100)
+- **rate_limit_burst_size**: Token bucket capacity for burst requests (default: 20)
+
+**Rate Limiting Features:**
+- Token bucket algorithm with configurable refill rates
+- Per-client rate limiting based on IP address
+- Thread-safe concurrent access
+- Automatic cleanup of stale rate limit buckets
+- RFC-compliant HTTP headers (X-RateLimit-*, Retry-After)
+
+**Rate Limit Headers:**
+- `X-RateLimit-Limit`: Maximum requests per period
+- `X-RateLimit-Remaining`: Remaining requests in current period
+- `X-RateLimit-Reset`: Time when the limit resets
+- `Retry-After`: Seconds to wait before retrying (when limit exceeded)
+
 ### Error Handling & Timeouts
 
 The proxy includes comprehensive error handling and timeout management:
